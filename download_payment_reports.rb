@@ -7,9 +7,9 @@ require 'optparse'
 options = {}
 
 opt_parser = OptionParser.new do |opt|
-  opt.banner = 'Usage: ruby payment-reports.rb --email [email] --password [amazon vendor central password] --country [country, one of GB, US, or AU] --from-date [from month, formatted dd-mm-yyyy]'
+  opt.banner = 'Usage: ruby download_payment_reports.rb --email [email] --password [amazon vendor central password] --country [country, one of GB, US, or AU] --from-date [from month, formatted dd-mm-yyyy]'
   opt.separator  ''
-  opt.separator  'e.g. ruby payment-reports.rb --email emma@fauxbooks.com --password 2345678 --country GB --from-month 01-07-2020'
+  opt.separator  'e.g. ruby download_payment_reports.rb --email emma@fauxbooks.com --password 2345678 --country GB --from-month 01-07-2020'
   opt.separator  ''
   opt.separator  'Options'
 
@@ -41,7 +41,7 @@ begin
   opt_parser.parse!
 
   unless options[:email] && options[:password]
-    puts "Error: You have to provide at least an email and password. Type 'ruby payment-reports.rb -h' for help."
+    puts "Error: You have to provide at least an email and password. Type 'ruby download_payment_reports.rb -h' for help."
     exit
   end
 rescue OptionParser::InvalidOption => e
