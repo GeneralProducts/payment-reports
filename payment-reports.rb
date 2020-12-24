@@ -7,7 +7,7 @@ require 'optparse'
 options = {}
 
 opt_parser = OptionParser.new do |opt|
-  opt.banner = 'Usage: ruby payment-reports.rb --email [email] --password [amazon vendor central password] --country [country, one of GB, US, or AU] --from-month [from month, formatted mmyy]'
+  opt.banner = 'Usage: ruby payment-reports.rb --email [email] --password [amazon vendor central password] --country [country, one of GB, US, or AU] --from-date [from month, formatted dd-mm-yyyy]'
   opt.separator  ''
   opt.separator  'e.g. ruby payment-reports.rb --email emma@fauxbooks.com --password 2345678 --country GB --from-month 01-07-2020'
   opt.separator  ''
