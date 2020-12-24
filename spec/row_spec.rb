@@ -1,7 +1,8 @@
-require './row'
+require './lib/row'
+require './lib/source'
 
 describe Row do
-  let(:row) { Row.new(hash, forex, default_currency) }
+  let(:row) { Row.new(hash, forex, default_currency, source, invoice_date) }
 
   let(:hash) do
     {
@@ -16,6 +17,8 @@ describe Row do
 
   let(:default_currency) { 'GBP' } # mandatory
   let(:forex) { nil }
+  let(:source) { Source.new('DigitalEBooksPaymentReport.xls') }
+  let(:invoice_date) { nil }
 
   it 'gives the isbn' do
     expect(row.isbn).to eq('123')
@@ -47,7 +50,7 @@ describe Row do
   end
 
   it 'gives the quantity' do
-    expect(row.quantity).to eq('100')
+    expect(row.quantity).to eq(100)
   end
 
   it 'gives the returns_qty' do

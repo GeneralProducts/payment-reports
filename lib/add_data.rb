@@ -17,13 +17,23 @@ class AddData
       input_sheet = convert_to_xlsx(raw_input_sheet(file))
       forex_rate = Forex.new(input_sheet).rate
 
-      begin
+      # begin
         input_sheet.each_with_index(
           source(file).headers
         ) do |hash, idx|
-          next if idx.zero? # skip header row
+          if source(file).nbni?
+            next if [0..4].include? idx # they have 4 additional lines
+          else
+            next if idx.zero? # skip header row
+          end
 
-          row = Row.new(hash, forex_rate, @options[:currency], source(file), @options[:invoice_date])
+          row = Row.new(
+            hash,
+            forex_rate,
+            @options[:currency],
+            source(file),
+            @options[:invoice_date]
+          )
           break if row.empty?
 
           next if row.zero?
@@ -39,7 +49,7 @@ class AddData
             row.value,
             row.returns_qty,
             row.returns_value,
-            file.delete('.xls').delete('.xlsx').split(//).last(2).join,
+            country_code(file, row.currency),
             row.currency,
             row.original_sales_value,
             row.original_returns_value,
@@ -47,9 +57,9 @@ class AddData
             row.log
           ]
         end
-      rescue => e
-        puts "Error! #{e.message == "Couldn't find header row." ? "One of the headers could not be found in spreadsheet #{file}. Please email the file and this message to support@consonance.app" : e}"
-      end
+      # rescue => e
+      #   puts "Error! #{e.message == "Couldn't find header row." ? "One of the headers could not be found in #{file}. Please email the file and this message to support@consonance.app" : e}"
+      # end
     end
   end
 
@@ -59,11 +69,21 @@ class AddData
     Source.new(file)
   end
 
-  def raw_input_sheet(file)
+  def country_code(file, currency)
     if source(file).amazon?
-      Roo::Excel.new(file).sheet(0)
+      file.delete('.xls').delete('.xlsx').split(//).last(2).join
     elsif source(file).lsi?
+      currency.split(//).first(2).join
+    elsif source(file).nbni?
+      'GB'
+    end
+  end
+
+  def raw_input_sheet(file)
+    if source(file).lsi?
       Roo::CSV.new(file, csv_options: { col_sep: "\t" }).sheet(0)
+    else
+      Roo::Excel.new(file).sheet(0)
     end
   end
 

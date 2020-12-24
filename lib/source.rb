@@ -8,14 +8,20 @@ class Source
   end
 
   def lsi?
-    name == 'LSI'
+    name == 'LS'
+  end
+
+  def nbni?
+    name == 'NBNI'
   end
 
   def name
     if @file.match?(/DigitalEBooksPaymentReport/i)
       'Amazon'
     elsif @file.match?(/sales_comp/i)
-      'LSI'
+      'LS'
+    elsif @file.match?(/FullTitleSales/i)
+      'NBNI'
     end
   end
 
@@ -38,6 +44,13 @@ class Source
         quantity:            /PTD_net_quantity/i,
         value:               /PTD_net_pub_comp/i,
         currency:            /reporting_currency_code/i
+      }
+    elsif nbni?
+      {
+        isbn:       /EAN13/i,
+        list_price: /Stg Price/i,
+        quantity:   /NetQty-m/i,
+        value:      /Net Value-m/i
       }
     end
   end

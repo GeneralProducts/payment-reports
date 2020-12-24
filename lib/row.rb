@@ -23,7 +23,7 @@ class Row
   end
 
   def sales_date
-    return @invoice_date if @source.lsi?
+    return @invoice_date unless @source.amazon?
 
     if currency == 'USD'
       Date.strptime(@hash[:sales_date], '%m/%d/%Y').strftime('%Y-%m-%d')
@@ -38,7 +38,7 @@ class Row
   end
 
   def quantity
-    @hash[:quantity].to_i > 0 ? @hash[:quantity] : 0
+    @hash[:quantity].to_i > 0 ? @hash[:quantity].to_i : 0
   end
 
   def returns_qty
@@ -58,7 +58,7 @@ class Row
   end
 
   def currency
-    @hash[:currency]
+    @hash[:currency] || @default_currency
   end
 
   def original_sales_value
