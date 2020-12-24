@@ -3,10 +3,10 @@ require 'roo-xls'
 require 'axlsx'
 require 'byebug'
 require 'optparse'
-require './row'
-require './source'
-require './add_data'
-require './options'
+require './lib/row'
+require './lib/source'
+require './lib/add_data'
+require './lib/options'
 
 def output_rows
   [

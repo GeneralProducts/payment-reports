@@ -1,5 +1,5 @@
-require './forex'
-require './source'
+require './lib/forex'
+require './lib/source'
 require 'roo'
 require 'roo-xls'
 require 'axlsx'
