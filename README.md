@@ -1,7 +1,9 @@
 This repo contains two files:
 
-* payment-reports.rb downloads payment reports from Vendor Central
-* generate_import_file.rb processes them so they can be imported into Consonance
+* `payment-reports.rb` downloads payment reports from Vendor Central
+* `generate_import_file.rb` processes them so they can be imported into Consonance
+
+If you use this code, please manually check the outputs. No guarantees are made and this code is provided as is.
 
 # 1. Download Amazon payment reports
 > Super early version! Please raise an issue with your problems. The AU country option in particular is untested!
@@ -42,8 +44,6 @@ TODO: more instructions
 
 
 # 2. Transform Amazon and LSI sales reports
-
-## Usage
 
 * Put the files you want to tranform into the /files folder
 * Run `ruby generate_import_file.rb` with options e.g. `ruby generate_import_file.rb --channel UKH -d GBP -i 31-10-2020`
