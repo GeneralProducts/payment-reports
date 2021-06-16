@@ -1,5 +1,6 @@
 require 'date'
 require 'byebug'
+require 'lisbn'
 
 class Row
   def initialize(hash, forex_rate, default_currency, source, invoice_date)
@@ -19,7 +20,7 @@ class Row
   end
 
   def isbn
-    @hash[:isbn]
+    Lisbn.new(@hash[:isbn].to_s).isbn13
   end
 
   def sales_date

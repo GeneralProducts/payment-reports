@@ -38,7 +38,7 @@ class Source
       }
     elsif lsi?
       {
-        isbn:                /parent_isbn/i,
+        isbn:                /isbn/i,
         list_price:          /list_price/i,
         list_price_currency: /reporting_currency_code/i,
         quantity:            /PTD_net_quantity/i,

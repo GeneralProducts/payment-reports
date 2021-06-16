@@ -1,9 +1,10 @@
+ruby "2.7.2"
 source 'https://rubygems.org'
 
 gem 'rspec'
 gem 'byebug'
 gem 'roo'
 gem 'roo-xls'
-gem 'axlsx'
+gem 'caxlsx'
 gem 'optparse'
-gem 'zip'
+gem "lisbn"

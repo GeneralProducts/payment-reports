@@ -18,11 +18,11 @@ class Options
         options[:channel] = channel
       end
 
-      opt.on('-d=s', '--default-currency=s', 'Your default currency in Consonance') do |currency|
+      opt.on('-d=s', '--default-currency=s', 'Your default currency in Consonance -- not the currency in this file') do |currency|
         options[:currency] = currency
       end
 
-      opt.on('-i=s', '--invoice_date=s', 'The invoice date, formatted YYYY-MM-DD, required for LSI files') do |invoice_date|
+      opt.on('-i=s', '--invoice_date=s', 'The invoice date, formatted YYYY-MM-DD, required for LSI files because they do not contain a date') do |invoice_date|
         options[:invoice_date] = invoice_date
       end
 

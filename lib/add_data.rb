@@ -2,7 +2,7 @@ require './lib/forex'
 require './lib/source'
 require 'roo'
 require 'roo-xls'
-require 'axlsx'
+require 'caxlsx'
 require 'byebug'
 require 'optparse'
 
@@ -16,11 +16,11 @@ class AddData
     Dir.glob('files/*.xls') do |file|
       input_sheet = convert_to_xlsx(raw_input_sheet(file))
       forex_rate = Forex.new(input_sheet).rate
-
       # begin
-        input_sheet.each_with_index(
-          source(file).headers
+      input_sheet.each_with_index(
+        source(file).headers
         ) do |hash, idx|
+
           if source(file).nbni?
             next if [0..4].include? idx # they have 4 additional lines
           else
@@ -34,6 +34,7 @@ class AddData
             source(file),
             @options[:invoice_date]
           )
+          # byebug
           break if row.empty?
 
           next if row.zero?
