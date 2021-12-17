@@ -66,7 +66,7 @@ ____
 TODO: more instructions
 
 
-# 2. Transform Amazon and LSI sales reports
+# 2. Transform Amazon, NBNi and LSI sales reports
 
 * Put the files you want to tranform into the /files folder
 * Run `ruby generate_import_file.rb` with options e.g. `ruby generate_import_file.rb --channel UKH -d GBP -i 31-10-2020`
