@@ -5,6 +5,8 @@ This repo contains two Ruby tools:
 
 If you use this code, please manually check the outputs. No guarantees are made and this code is provided as is.
 
+Update, Xmas 2021. Amazon have changed their page so this scraper no longer works. The file combiner should, though. 
+
 # 1. Download Amazon payment reports
 > Super early version! Please raise an issue with your problems. The AU country option in particular is untested!
 
